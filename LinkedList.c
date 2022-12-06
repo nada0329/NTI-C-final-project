@@ -305,3 +305,46 @@ void ShowNode(LinkedList** ptr_list,char* name,char* Bdate,char* add,int* id,uns
     *englishgrade=temp->Scores.eng;
     
 }
+
+void Print_List(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no data to show\n");
+        return;
+    }
+    printf("\nID      Name                           Level  Phone        Birth Date     Address\n");
+    while(temp!= NULL)
+    {
+        printf("%-7d %-30s %-6hd 0%-11d %-14s %s\n",temp->ID,temp->Name,temp->Level,temp->Phone,temp->BirthDate,temp->Address);
+        /*printf("\nID: %d\tName: %s\tLevel: %hd\tPhone: %d\n",temp->ID,temp->Name,temp->Level,temp->Phone);
+        printf("Address: %s\nBirth Date: %s\n",temp->Address,temp->BirthDate);*/
+        temp=temp->next;
+    }
+}
+
+void Delete_List(LinkedList** ptr_list)
+{ 
+    if((*ptr_list)->head==NULL)
+    {
+        printf("\nEmpty!! no list to delete\n");
+        return;
+    }
+    // traverse till exit the list
+    while((*ptr_list)->head!= NULL)
+    {
+        /* if one node remaining */
+        if((*ptr_list)->head->next==NULL)
+        {
+            free((*ptr_list)->head);
+            (*ptr_list)->head=NULL;
+            break;
+        }
+        (*ptr_list)->head=(*ptr_list)->head->next;
+        free((*ptr_list)->head->prev);
+    }
+    (*ptr_list)->num_of_students=0;
+    printf("\nDeletion Done\n");
+}
+

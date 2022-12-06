@@ -218,3 +218,12 @@ void DisplayStudent(LinkedList* ptr_list)
             printf("Eng grade not available yet\n");        
     }
 }
+
+void ListStudent(LinkedList* ptr_list)
+{
+    Print_List(&ptr_list);
+}
+void DestroyALL(LinkedList* ptr_list)
+{
+    Delete_List(&ptr_list);
+}

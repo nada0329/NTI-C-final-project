@@ -51,5 +51,8 @@ void EditNodePhone(LinkedList** ptr_list, int id,unsigned int Phone);
 void EditNodeLevel(LinkedList** ptr_list, int id,short Level);
 void ShowNode(LinkedList** ptr_list,char* name,char* Bdate,char* add,int* id,unsigned int* phone, short* level, short* mathgrade,short* arabicgrade,short* englishgrade,short* ok);
 short IsEmpty(LinkedList** ptr_list);
+void Print_List(LinkedList** ptr_list);
+void Delete_List(LinkedList** ptr_list);
+
 
 #endif
