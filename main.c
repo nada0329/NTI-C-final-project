@@ -107,3 +107,114 @@ void AddStudent(LinkedList* ptr_list)
     AddNode(&ptr_list,ID,Name,BirthDate,Address,Phone,Level);
 
 }
+
+void EditStudent(LinkedList* ptr_list)
+{
+    int ID;
+    short option,stay=1;
+    char Name[30], BirthDate[20], Adress[30];
+    unsigned int Phone;
+    short Level;
+    /* check if list contains data */
+    if(IsEmpty(&ptr_list))
+    {
+        printf("\nno data to edit\n");
+        return;
+    }
+    // ID is the key used for the process
+    printf("\nEnter Regesteration ID of student: ");
+    fflush(stdin);
+    scanf("%d",&ID);
+    printf("\nSelect option to edit\n");
+    printf("1.Name   2.Address   3.BirthDate   4.Phone   5.Level   6.exit");
+    // you stay in the loop till you decide to exit
+    while(stay)
+    {   
+        printf("\nneed to change: ");
+        fflush(stdin);
+        scanf("%hd",&option);
+        switch (option)
+        {
+        case 1:
+            printf("\nNew Name: ");
+            fflush(stdin);
+            gets(Name);
+            EditNodeName(&ptr_list,ID,Name);
+            break;
+        case 2:
+            printf("\nNew Address: ");
+            fflush(stdin);
+            gets(Adress);
+            EditNodeAdd(&ptr_list,ID,Adress);
+            break;    
+        case 3:
+            printf("\nNew BirthDate: ");
+            fflush(stdin);
+            gets(BirthDate);
+            EditNodeBirthDate(&ptr_list,ID,BirthDate);
+            break;
+        case 4:
+            printf("\nNew Phone: ");
+            fflush(stdin);
+            scanf("%u",&Phone);
+            EditNodePhone(&ptr_list,ID,Phone);
+            break;
+        case 5:
+            printf("\nNew Level: ");
+            fflush(stdin);
+            scanf("%hd",&Level);
+            EditNodeLevel(&ptr_list,ID,Level);
+            break;
+        case 6:
+            stay=0;
+            printf("\nexit successfully\n");
+            break;
+        default:
+            printf("\nwrong option!!\n");
+            break;
+        }
+    }
+
+
+}
+
+void DeleteStudent(LinkedList* ptr_list)
+{
+    char name[30];
+    printf("\nEnter student name to delete: ");
+    fflush(stdin);
+    gets(name);
+    DeleteNode(&ptr_list, name);
+
+}
+
+void DisplayStudent(LinkedList* ptr_list)
+{
+    int id=0;
+    char name[30], Bdate[20], add[30];
+    unsigned int phone=0;
+    short oktotest=1,level, mathgrade, arabicgrade, englishgrade;
+    printf("\nEnter Name: ");
+    fflush(stdin);
+    gets(name);
+    ShowNode(&ptr_list, name, Bdate, add, &id, &phone, &level,&mathgrade, &arabicgrade, &englishgrade,&oktotest);
+    // ok is the flag used to test availability of displaying 
+    if(oktotest)
+    {
+        printf("\nID: %d\tLevel: %hd\tPhone: 0%d\n",id,level,phone);
+        printf("Address: %s\nBirth Date: %s\n",add,Bdate);
+        printf("student grades:\n");
+        if(mathgrade>=0)
+            printf("Math: %hd\n",mathgrade);
+        else
+            printf("Math grade not available yet\n");
+        if(arabicgrade>=0)
+            printf("Arabic: %hd\n",arabicgrade);
+        else
+            printf("Arabic grade not available yet\n");
+        if(englishgrade>=0)
+            printf("Eng: %hd\n",englishgrade);
+        else
+            printf("Eng grade not available yet\n");        
+    }
+}

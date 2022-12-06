@@ -43,6 +43,13 @@ typedef struct linkedlist
 
 void CreateList(LinkedList* ptr_List);
 void AddNode(LinkedList** ptr_list, int id, char* name, char* birthDate, char* address, unsigned int phone, short level);
-
+void DeleteNode(LinkedList** ptr_list, char* name);
+void EditNodeName(LinkedList** ptr_list, int id,char* name);
+void EditNodeAdd(LinkedList** ptr_list, int id,char* Add);
+void EditNodeBirthDate(LinkedList** ptr_list, int id,char* BDate);
+void EditNodePhone(LinkedList** ptr_list, int id,unsigned int Phone);
+void EditNodeLevel(LinkedList** ptr_list, int id,short Level);
+void ShowNode(LinkedList** ptr_list,char* name,char* Bdate,char* add,int* id,unsigned int* phone, short* level, short* mathgrade,short* arabicgrade,short* englishgrade,short* ok);
+short IsEmpty(LinkedList** ptr_list);
 
 #endif
