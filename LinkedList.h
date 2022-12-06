@@ -42,6 +42,7 @@ typedef struct linkedlist
 
 
 void CreateList(LinkedList* ptr_List);
+void AddNode(LinkedList** ptr_list, int id, char* name, char* birthDate, char* address, unsigned int phone, short level);
 
 
 #endif

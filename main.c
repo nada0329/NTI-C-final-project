@@ -75,3 +75,35 @@ int main()
 
     return 0;
 }
+
+void AddStudent(LinkedList* ptr_list)
+{
+    printf("\nPlease enter student data\n");
+    int ID;
+    printf("Regestration ID: ");
+    fflush(stdin);
+    scanf("%d",&ID);
+    char Name[30];
+    printf("Name: ");
+    fflush(stdin);
+    gets(Name);
+    char BirthDate[20];
+    printf("BirthDate in format xxxx-xx-xx: ");
+    fflush(stdin);
+    gets(BirthDate);
+    char Address[30];
+    printf("Address: ");
+    fflush(stdin);
+    gets(Address);
+    unsigned int Phone;
+    printf("Phone Num: ");
+    fflush(stdin);
+    scanf("%u",&Phone);
+    short Level;
+    printf("Level: ");
+    fflush(stdin);
+    scanf("%hd",&Level);
+    printf("\n");
+    AddNode(&ptr_list,ID,Name,BirthDate,Address,Phone,Level);
+
+}
