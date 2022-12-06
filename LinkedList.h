@@ -53,6 +53,19 @@ void ShowNode(LinkedList** ptr_list,char* name,char* Bdate,char* add,int* id,uns
 short IsEmpty(LinkedList** ptr_list);
 void Print_List(LinkedList** ptr_list);
 void Delete_List(LinkedList** ptr_list);
-
+void AddListMScores(LinkedList** ptr_list);
+void AddListAScores(LinkedList** ptr_list);
+void AddListEScores(LinkedList** ptr_list);
+void DisplayListEScores(LinkedList** ptr_list);
+void DisplayListMScores(LinkedList** ptr_list);
+void DisplayListAScores(LinkedList** ptr_list);
+void RankMathScore(LinkedList** ptr_list);
+void RankEngScore(LinkedList** ptr_list);
+void RankArbScore(LinkedList** ptr_list);
+void RankAllScore(LinkedList** ptr_list);
+void EditEngScore(LinkedList** ptr_list,char* n,short s);
+void EditMthScore(LinkedList** ptr_list,char* n,short s);
+void EditArbScore(LinkedList** ptr_list,char* n,short s);
+void ListAllScore(LinkedList** ptr_list);
 
 #endif

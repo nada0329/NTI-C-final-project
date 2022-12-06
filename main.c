@@ -227,3 +227,105 @@ void DestroyALL(LinkedList* ptr_list)
 {
     Delete_List(&ptr_list);
 }
+
+void AddScores(LinkedList* ptr_list)
+{
+    short g;
+    printf("\nSelect the subject you want to fill grades for:\n1. math\n2. arabic\n3. english\n");
+            scanf("%hd",&g);
+            switch (g)
+            {
+            case 1:
+                AddListMScores(&ptr_list);
+                break;
+            case 2:
+                AddListAScores(&ptr_list);
+                break;
+            case 3:
+                AddListEScores(&ptr_list);
+                break;    
+            default:
+                printf("!!!! WARNING !!! Invalid Subject !!!!\n");
+                break;
+            }
+}
+
+void DisplayScores(LinkedList* ptr_list)
+{
+    short g;
+    printf("\nSelect the subject you want to display grades for:\n1. math\n2. arabic\n3. english\n");
+            scanf("%hd",&g);
+            switch (g)
+            {
+            case 1:
+                DisplayListMScores(&ptr_list);
+                break;
+            case 2:
+                DisplayListAScores(&ptr_list);
+                break;
+            case 3:
+                DisplayListEScores(&ptr_list);
+                break;    
+            default:
+                printf("!!!! WARNING !!! Invalid Subject !!!!\n");
+                break;
+            }
+}
+
+void RankScores(LinkedList* ptr_list)
+{
+    short r;
+    printf("\nSelect the subject you want to rank students for:\n1. math\n2. arabic\n3. english\n4. All\n");
+            scanf("%hd",&r);
+            switch (r)
+            {
+            case 1:
+                RankMathScore(&ptr_list);
+                break;
+            case 2:
+                RankArbScore(&ptr_list);
+                break;
+            case 3:
+                RankEngScore(&ptr_list);
+                break;  
+            case 4:    
+                RankAllScore(&ptr_list);  
+                break;
+            default:
+                printf("!!!! WARNING !!! Invalid Subject !!!!\n");
+                break;
+            }
+}
+
+void EditStudentScore(LinkedList* ptr_list)
+{
+    short r,s;
+    char n[30];
+    printf("\nSelect the subject you want to Edit students for:\n1. math\n2. arabic\n3. english\n");
+    scanf("%hd",&r);
+    printf("\nEnter Student Name: ");
+    fflush(stdin);
+    gets(n);
+    printf("\nNew Score is: ");
+    scanf("%hd",&s);
+    switch (r)
+    {
+    case 1:
+        EditMthScore(&ptr_list,n,s);
+        break;
+    case 2:
+        EditArbScore(&ptr_list,n,s);
+        break;
+    case 3:
+        EditEngScore(&ptr_list,n,s);
+        break;    
+    default:
+        printf("!!!! WARNING !!! Invalid Subject !!!!\n");
+        break;
+    }
+}
+
+void DisplayAllScores(LinkedList* ptr_list)
+{
+    ListAllScore(&ptr_list);
+}

@@ -348,3 +348,425 @@ void Delete_List(LinkedList** ptr_list)
     printf("\nDeletion Done\n");
 }
 
+void AddListMScores(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no data records to add for\n");
+        return;
+    }
+    // add all students scores one by one
+    while (temp!=NULL)
+    {
+        printf("\n Name: %-30s Score: ",temp->Name);
+        fflush(stdin);
+        scanf("%hd",&(temp->Scores.math));
+        temp=temp->next;
+    }
+}
+
+void AddListAScores(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no data records to add for\n");
+        return;
+    }
+    // add all students scores one by one
+    while (temp!=NULL)
+    {
+        printf("\n Name: %-30s Score: ",temp->Name);
+        fflush(stdin);
+        scanf("%hd",&(temp->Scores.arabic));
+        temp=temp->next;
+    }
+}
+
+void AddListEScores(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no data records to add for\n");
+        return;
+    }
+    // add all students scores one by one
+    while (temp!=NULL)
+    {
+        printf("\n Name: %-30s Score: ",temp->Name);
+        fflush(stdin);
+        scanf("%hd",&(temp->Scores.eng));
+        temp=temp->next;
+    }
+
+}
+
+void DisplayListEScores(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no data to records to display\n");
+        return;
+    }
+    // traverse through the list
+    while (temp!=NULL)
+    {
+        // if marks added or still not
+        if(temp->Scores.eng>=0)
+            printf("\n Name: %-30s Score: %hd",temp->Name,temp->Scores.eng);
+        else
+            printf("\n Name: %-30s Score: not available",temp->Name);    
+        
+        temp=temp->next;
+    }
+}
+
+void DisplayListAScores(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no data to records to display\n");
+        return;
+    }
+    // traverse through the list
+    while (temp!=NULL)
+    {
+        // if marks added or still not
+        if(temp->Scores.arabic>=0)
+            printf("\n Name: %-30s Score: %hd",temp->Name,temp->Scores.arabic);
+        else
+            printf("\n Name: %-30s Score: not available",temp->Name);    
+        
+        temp=temp->next;
+    }
+}
+
+void DisplayListMScores(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no data to records to display\n");
+        return;
+    }
+    // traverse through the list
+    while (temp!=NULL)
+    {
+        // if marks added or still not
+        if(temp->Scores.math>=0)
+            printf("\n Name: %-30s Score: %hd",temp->Name,temp->Scores.math);
+        else
+            printf("\n Name: %-30s Score: not available",temp->Name);    
+        
+        temp=temp->next;
+    }
+}
+
+void RankMathScore(LinkedList** ptr_list)
+{
+    // create arrays in heap to hold names and marks
+    short* rank_math=(short*)malloc(((*ptr_list)->num_of_students)*sizeof(int));
+    char** n=(char**)malloc(((*ptr_list)->num_of_students)*sizeof(char**));
+    short temp_rank;
+    char temp_name[30];
+    int count=0;
+    // create each string in the array of strings of names
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        n[i] = (char*)malloc(30 * sizeof *n[i]);
+    Student* temp=(*ptr_list)->head;
+    // fill the 2arrays with names and marks
+    while(temp!=NULL)
+    {
+        rank_math[count]=temp->Scores.math;
+        strcpy(n[count],temp->Name); 
+        count++;
+        temp=temp->next;
+    }
+    // apply bubble sort on the arrays
+    for (int step = 0; step < ((*ptr_list)->num_of_students) - 1; ++step) 
+    {
+        int swapped = 0;
+        for (int i = 0; i < ((*ptr_list)->num_of_students) - step - 1; ++i) 
+        {
+            if (rank_math[i] > rank_math[i + 1]) 
+            {  
+                temp_rank = rank_math[i];
+                rank_math[i] = rank_math[i + 1];
+                rank_math[i + 1] = temp_rank; 
+                strcpy(temp_name,n[i]);
+                strcpy(n[i],n[i+1]);
+                strcpy(n[i+1],temp_name); 
+                swapped = 1;
+            }
+        }
+        if (swapped == 0) 
+        {
+          break;
+        }
+    }
+    // print ranked lists
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+    {
+        printf("\nName: %-30s  Score: %hd",n[i],rank_math[i]);
+    }
+    // free used memory in heap
+    free(rank_math);
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        free(n[i]);
+    
+}
+
+void RankEngScore(LinkedList** ptr_list)
+{
+    // create arrays in heap to hold names and marks
+    short* rank_Eng=(short*)malloc(((*ptr_list)->num_of_students)*sizeof(int));
+    char** n=(char**)malloc(((*ptr_list)->num_of_students)*sizeof(char**));
+    short temp_rank;
+    char temp_name[30];
+    int count=0;
+    // create each string in the array of strings of names
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        n[i] = (char*)malloc(30 * sizeof *n[i]);
+    Student* temp=(*ptr_list)->head;
+    // fill the 2arrays with names and marks
+    while(temp!=NULL)
+    {
+        rank_Eng[count]=temp->Scores.eng;
+        strcpy(n[count],temp->Name); 
+        count++;
+        temp=temp->next;
+    }
+    // apply bubble sort on the arrays
+    for (int step = 0; step < ((*ptr_list)->num_of_students) - 1; ++step) 
+    {
+        int swapped = 0;
+        for (int i = 0; i < ((*ptr_list)->num_of_students) - step - 1; ++i) 
+        {
+            if (rank_Eng[i] > rank_Eng[i + 1]) 
+            {  
+                temp_rank = rank_Eng[i];
+                rank_Eng[i] = rank_Eng[i + 1];
+                rank_Eng[i + 1] = temp_rank; 
+                strcpy(temp_name,n[i]);
+                strcpy(n[i],n[i+1]);
+                strcpy(n[i+1],temp_name); 
+                swapped = 1;
+            }
+        }
+        if (swapped == 0) 
+        {
+          break;
+        }
+    }
+    // print ranked lists
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+    {
+        printf("\nName: %-30s  Score: %hd",n[i],rank_Eng[i]);
+    }
+    // free used memory in heap
+    free(rank_Eng);
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        free(n[i]);
+    
+}
+
+void RankArbScore(LinkedList** ptr_list)
+{
+    // create arrays in heap to hold names and marks
+    short* rank_Arb=(short*)malloc(((*ptr_list)->num_of_students)*sizeof(int));
+    char** n=(char**)malloc(((*ptr_list)->num_of_students)*sizeof(char**));
+    short temp_rank;
+    char temp_name[30];
+    int count=0;
+    // create each string in the array of strings of names
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        n[i] = (char*)malloc(30 * sizeof *n[i]);
+    Student* temp=(*ptr_list)->head;
+    // fill the 2arrays with names and marks
+    while(temp!=NULL)
+    {
+        rank_Arb[count]=temp->Scores.arabic;
+        strcpy(n[count],temp->Name); 
+        count++;
+        temp=temp->next;
+    }
+    // apply bubble sort on the arrays
+    for (int step = 0; step < ((*ptr_list)->num_of_students) - 1; ++step) 
+    {
+        int swapped = 0;
+        for (int i = 0; i < ((*ptr_list)->num_of_students) - step - 1; ++i) 
+        {
+            if (rank_Arb[i] > rank_Arb[i + 1]) 
+            {  
+                temp_rank = rank_Arb[i];
+                rank_Arb[i] = rank_Arb[i + 1];
+                rank_Arb[i + 1] = temp_rank; 
+                strcpy(temp_name,n[i]);
+                strcpy(n[i],n[i+1]);
+                strcpy(n[i+1],temp_name); 
+                swapped = 1;
+            }
+        }
+        if (swapped == 0) 
+        {
+          break;
+        }
+    }
+    // print ranked lists
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+    {
+        printf("\nName: %-30s  Score: %hd",n[i],rank_Arb[i]);
+    }
+    // free used memory in heap
+    free(rank_Arb);
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        free(n[i]);
+    
+}
+
+void RankAllScore(LinkedList** ptr_list)
+{
+    // create arrays in heap to hold names and marks
+    short* rank_All=(short*)malloc(((*ptr_list)->num_of_students)*sizeof(int));
+    char** n=(char**)malloc(((*ptr_list)->num_of_students)*sizeof(char**));
+    short temp_rank;
+    char temp_name[30];
+    int count=0;
+    // create each string in the array of strings of names
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        n[i] = (char*)malloc(30 * sizeof *n[i]);
+    Student* temp=(*ptr_list)->head;
+    // fill the 2arrays with names and marks
+    while(temp!=NULL)
+    {
+        // add only available grades
+        rank_All[count]=0;
+        if(temp->Scores.arabic>=0)
+            rank_All[count]+=(temp->Scores.arabic);
+        if(temp->Scores.math>=0) 
+            rank_All[count]+=(temp->Scores.math);
+        if(temp->Scores.eng>=0)  
+            rank_All[count]+=(temp->Scores.eng);
+        //rank_All[count]=(temp->Scores.arabic)+(temp->Scores.math)+(temp->Scores.eng);
+        strcpy(n[count],temp->Name); 
+        count++;
+        temp=temp->next;
+    }
+    // apply bubble sort on the arrays
+    for (int step = 0; step < ((*ptr_list)->num_of_students) - 1; ++step) 
+    {
+        int swapped = 0;
+        for (int i = 0; i < ((*ptr_list)->num_of_students) - step - 1; ++i) 
+        {
+            if (rank_All[i] > rank_All[i + 1]) 
+            {  
+                temp_rank = rank_All[i];
+                rank_All[i] = rank_All[i + 1];
+                rank_All[i + 1] = temp_rank; 
+                strcpy(temp_name,n[i]);
+                strcpy(n[i],n[i+1]);
+                strcpy(n[i+1],temp_name); 
+                swapped = 1;
+            }
+        }
+        if (swapped == 0) 
+        {
+          break;
+        }
+    }
+    // print ranked lists
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+    {
+        printf("\nName: %-30s  ALL Scores: %hd",n[i],rank_All[i]);
+    }
+    // free used memory in heap
+    free(rank_All);
+    for (int i = 0; i < ((*ptr_list)->num_of_students); i++)
+        free(n[i]);
+    
+}
+
+void EditEngScore(LinkedList** ptr_list,char* n,short s)
+{
+    Student* temp=(*ptr_list)->head;
+    while (temp!=NULL)
+    {
+        if(stricmp(n,temp->Name)==0 )
+        {
+            break;
+        }
+        temp=temp->next;
+    }
+    if(temp==NULL)
+    {
+        printf("\n cant edit !! student not exist\n");
+        return;
+    }
+    else
+    {
+        temp->Scores.eng=s;
+    }
+}
+
+void EditMthScore(LinkedList** ptr_list,char* n,short s)
+{
+    Student* temp=(*ptr_list)->head;
+    while (temp!=NULL)
+    {
+        if(stricmp(n,temp->Name)==0 )
+        {
+            break;
+        }
+        temp=temp->next;
+    }
+    if(temp==NULL)
+    {
+        printf("\n cant edit !! student not exist\n");
+        return;
+    }
+    else
+    {
+        temp->Scores.math=s;
+    }
+}
+void EditArbScore(LinkedList** ptr_list,char* n,short s)
+{
+    Student* temp=(*ptr_list)->head;
+    while (temp!=NULL)
+    {
+        if(stricmp(n,temp->Name)==0 )
+        {
+            break;
+        }
+        temp=temp->next;
+    }
+    if(temp==NULL)
+    {
+        printf("\n cant edit !! student not exist\n");
+        return;
+    }
+    else
+    {
+        temp->Scores.arabic=s;
+    }
+}
+
+void ListAllScore(LinkedList** ptr_list)
+{
+    Student* temp=(*ptr_list)->head;
+    if(temp==NULL)
+    {
+        printf("\nEmpty!! no list to display\n");
+        return;
+    }
+    printf("\nName                           Math     English     Arabic\n");
+    while(temp!= NULL)
+    {
+        printf("%-30s %-8hd %-11hd %hd\n",temp->Name,temp->Scores.math,temp->Scores.eng,temp->Scores.arabic);
+        temp=temp->next;
+    }
+}
